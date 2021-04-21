@@ -83,11 +83,14 @@ module accumulator #(parameter N = 4) (
     end
     
     // Next state logic
-    always @(Q)
+    always @(load)
     begin
-        state_next2 = state_reg1;
-        state_next1 = state_reg0;
-        state_next0 = X;
+        if (load)
+        begin
+            state_next2 = state_reg1;
+            state_next1 = state_reg0;
+            state_next0 = X;
+        end
     end
     
     assign Q = Q_reg;
